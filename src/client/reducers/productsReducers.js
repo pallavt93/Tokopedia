@@ -9,14 +9,3 @@ export default (state=[], action) => {
 
     }
 }
-
-export default (state={}, action) => {
-    switch(action.type){
-        case actionTypes.FETCH_PRODUCT:
-            console.log("product = ", action.payload.data);
-            return action.payload.data;
-        default:
-            return state;
-
-    }
-}

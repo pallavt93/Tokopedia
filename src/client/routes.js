@@ -1,6 +1,6 @@
 import App from './App';
 import HomePage from './pages/HomePage';
-import ProductDiscriptionPage from './pages/ProductDiscriptionPage';
+import ProductDescriptionPage from './pages/ProductDescriptionPage';
 
 export default [
     {
@@ -9,6 +9,11 @@ export default [
             {
                 ...HomePage,
                 path: '/',
+                exact: true
+            },
+            {
+                ...ProductDescriptionPage,
+                path: '/pdp/:id',
                 exact: true
             }
         ]

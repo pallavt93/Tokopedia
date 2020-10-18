@@ -10,13 +10,4 @@ export const fetchProducts = (pageNumber) => async dispatch => {
     });
 }
 
-export const fetchProduct = (productNumber) => async dispatch => {
-    const res = await axios.get(`https://node-sample-api.herokuapp.com/api/products/${productNumber}`);
-
-    dispatch({
-        type: actionTypes.FETCH_PRODUCT,
-        payload: res
-    });
-}
-
 

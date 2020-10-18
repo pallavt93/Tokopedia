@@ -3,11 +3,11 @@ import { fetchProducts } from '../actions/productsActions';
 import ProductsList from '../components/ProductsList';
 import ProductsCarousel from '../components/ProductsCarousel';
 
-const HomePage = () => {
+const HomePage = (props) => {
     return (
         <div>
             <ProductsCarousel />
-            <ProductsList />
+            <ProductsList history={props.history} />
         </div>
     );
 };

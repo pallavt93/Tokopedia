@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/productsActions';
 import ProductItem from './ProductItem';
+import { Row, Col, Button } from 'react-bootstrap';
 
 class ProductsList extends React.Component{
     constructor(props){
@@ -12,7 +13,6 @@ class ProductsList extends React.Component{
         this.handleLoadMore = this.handleLoadMore.bind(this);
     }
     componentDidMount(){
-        console.log(this.props.products);
         if(this.props.products.length === 0 ){
             this.props.fetchProducts(this.state.productPage);
             this.setState((prevState)=>({ productPage: prevState.productPage + 1 }));
@@ -22,23 +22,35 @@ class ProductsList extends React.Component{
         
     }
     renderProducts(){
+        let counter = 0;
+
         return this.props.products.map( product => {
             return (
-                <ProductItem product={product} key={product.id}/>
+                <Col  key={product.id} >
+                    <ProductItem 
+                        product={product} 
+                        history = {this.props.history}
+                    />
+                </Col>
             );
         });
     }
     handleLoadMore() {
-        console.log("page Number =", this.state.productPage);
         this.props.fetchProducts(this.state.productPage);
         this.setState((prevState)=>({ productPage: prevState.productPage + 1 }));
     }
     render(){
         return (
-            <div>
-                {this.renderProducts()}
-                <button onClick = {this.handleLoadMore}>Load More</button>
-            </div>
+            <>
+                <Row className="justify-content-md-center" md={{cols:5, noGutters:false}} xs={{cols:1, noGutters:false}}>
+                    {this.renderProducts()}
+                </Row>
+                <Row>
+                    <Col  md={{span:6, offset:3}}>
+                        <Button variant="dark" onClick = {this.handleLoadMore} size="lg" block>Load More</Button>
+                    </Col>
+                </Row>
+            </>
         );
     }
 }

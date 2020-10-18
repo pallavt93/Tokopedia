@@ -1,19 +1,21 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
 
-class ProductItem extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        let product = this.props.product;
-        return (
-            <div>
-                    <img src={product.img} alt={product.name}/>
-                    <p>Name: {product.name}</p>
+const ProductItem = (props) => {
+    let product = props.product;
+    return (
+        <div onClick = {() => {props.history.push(`/pdp/${product.id}`)}} >
+            <Card>
+            <Card.Img variant="top" src={product.img} />
+            <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>
                     <p>Price: Rs.{product.price}</p>
-            </div>
-        );
-    }
+                </Card.Text>
+            </Card.Body>
+            </Card>
+        </div>
+    );
 }
 
 export default ProductItem;

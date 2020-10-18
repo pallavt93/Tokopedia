@@ -13,8 +13,10 @@ app.get('*', (req, res) => {
 
     const store = createStore();
 
+    // console.log("agguments = ",matchRoutes(Routes, req.path));
+
     const promises = matchRoutes(Routes, req.path)
-    .map(({ route })=> route.loadData ? route.loadData(store) : null )
+    .map(({ route, match })=> route.loadData ? route.loadData(store, match) : null )
     .map( promise => {
         if(promise){
             return new Promise((resolve, reject) => {
@@ -37,3 +39,4 @@ app.get('*', (req, res) => {
 app.listen(3000, ()=> {
     console.log("Listening on port 3000");
 })
+

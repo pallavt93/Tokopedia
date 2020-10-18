@@ -15,6 +15,7 @@ export default (req, store, context) => {
         </Provider>
     );
     return `
+    <!DOCTYPE html>
     <html>
         <head>
             <link
@@ -29,7 +30,7 @@ export default (req, store, context) => {
             <script>
                 window.INITIAL_STATE=${serialize(store.getState())} 
             </script>
-            <script src="bundle.js"></script>
+            <script src="/bundle.js"></script>
             <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
             <script
             src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
